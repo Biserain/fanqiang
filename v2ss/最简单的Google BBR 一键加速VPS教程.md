@@ -1,11 +1,4 @@
-<h1>最简单的Google BBR 一键加速VPS教程</h1>
-
 BBR是Google的一套网络拥塞控制算法，用在VPS服务器上，可以有效减少拥堵丢包，大幅提高网络连接和翻墙速度。
-
-目前很多Linux类系统的最新内核，都已内置BBR。所以，不再需要第三方的安装脚本了。直接修改系统配置即可。
-
-<b>广告插播，如果你觉得自己折腾VPS太麻烦，可以考虑这个服务哦（非本库服务）：</b><br>
-<a href="https://github.com/killgcd/justmysocks/blob/master/README.md"><img src="https://raw.githubusercontent.com/killgcd/justmysocks/master/images/bwgss.jpg" alt="搬瓦工翻墙 Just My Socks"></a>
 
 本文的系统要求为 Debian 9或更高版本的 Debian Linux，其它操作系统所知不详，不知是否适合本文的方法。
 
@@ -14,6 +7,13 @@ BBR是Google的一套网络拥塞控制算法，用在VPS服务器上，可以�
 Google BBR 一键加速VPS服务器很简单，SSH登录VPS后，分别执行以下2个命令即可（鼠标选中高亮后，点鼠标右键复制粘贴到root用户的#后面，然后回车）。<br>
 
 命令1(比较长，有折行，请完整拷贝)：<br> `wget https://raw.githubusercontent.com/bannedbook/fanqiang/master/v2ss/server-cfg/sysctl.conf  -O -> /etc/sysctl.conf`<br>
+
+fs.file-max = 65535
+net.ipv6.conf.all.accept_ra = 2
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+
+
 > 如果提示 wget: command not found 的错误，这是你的系统精简的太干净了，wget都没有安装，所以需要安先装 wget:<br>
 `apt-get install -y wget`
 
